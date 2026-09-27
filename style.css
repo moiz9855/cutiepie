@@ -1,0 +1,1066 @@
+/* ==========================================================================
+   FOR MANAHIL — ROMANTIC SCROLL-DRIVEN EXPERIENCE
+   Aesthetics: Dark obsidian, deep wine, rose glow, spider lily & lotus motifs
+   ========================================================================== */
+
+:root {
+  --bg-deep: #070709;
+  --bg-darker: #050507;
+  --bg-card: rgba(18, 12, 22, 0.65);
+  --bg-card-hover: rgba(28, 18, 34, 0.85);
+
+  --accent-burgundy: #4a102a;
+  --accent-wine: #6e163b;
+  --accent-rose: #d85c88;
+  --accent-blush: #f8a8bf;
+  --accent-soft-pink: #ffd9e4;
+  --accent-gold: #f6cf8a;
+
+  --text-main: #f7f3f6;
+  --text-body: #cfc2cb;
+  --text-dim: #968390;
+
+  --border-glass: rgba(216, 92, 136, 0.16);
+  --border-glass-active: rgba(248, 168, 191, 0.4);
+  --glow-shadow: 0 0 40px rgba(216, 92, 136, 0.18);
+  --glow-shadow-strong: 0 0 60px rgba(216, 92, 136, 0.32);
+
+  --font-serif-cormorant: "Cormorant Garamond", Georgia, serif;
+  --font-serif-playfair: "Playfair Display", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+
+  --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   RESET & BASE STYLES
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  background-color: var(--bg-deep);
+  color: var(--text-main);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-deep);
+  color: var(--text-body);
+  line-height: 1.7;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+  selection-background-color: var(--accent-wine);
+  selection-color: var(--accent-soft-pink);
+}
+
+::selection {
+  background: var(--accent-wine);
+  color: var(--accent-soft-pink);
+}
+
+/* ==========================================================================
+   AMBIENT BACKGROUNDS & PARTICLES
+   ========================================================================== */
+.fireflies-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.ambient-glow {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.35;
+  transition: opacity 2s ease;
+  animation: breatheGlow 14s ease-in-out infinite alternate;
+}
+
+.glow-top {
+  top: -15vh;
+  right: -10vw;
+  width: 55vw;
+  height: 55vw;
+  background: radial-gradient(circle, rgba(110, 22, 59, 0.45) 0%, rgba(74, 16, 42, 0.15) 50%, transparent 70%);
+}
+
+.glow-bottom {
+  bottom: -20vh;
+  left: -15vw;
+  width: 65vw;
+  height: 65vw;
+  background: radial-gradient(circle, rgba(82, 14, 48, 0.4) 0%, rgba(45, 9, 28, 0.2) 55%, transparent 75%);
+  animation-delay: -7s;
+}
+
+@keyframes breatheGlow {
+  0% { transform: scale(1) translate(0, 0); opacity: 0.28; }
+  50% { transform: scale(1.12) translate(-2vw, 2vh); opacity: 0.42; }
+  100% { transform: scale(0.95) translate(2vw, -2vh); opacity: 0.3; }
+}
+
+.screen-vignette {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(5, 5, 7, 0.8) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ==========================================================================
+   AUDIO TOGGLE BUTTON
+   ========================================================================== */
+.audio-toggle {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 100;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  background: rgba(18, 12, 22, 0.7);
+  border: 1px solid var(--border-glass);
+  border-radius: 999px;
+  color: var(--accent-blush);
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  cursor: pointer;
+  transition: all 0.35s var(--transition-smooth);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.audio-toggle:hover {
+  background: rgba(36, 20, 42, 0.85);
+  border-color: var(--border-glass-active);
+  color: var(--text-main);
+  box-shadow: 0 0 25px rgba(216, 92, 136, 0.25);
+  transform: translateY(-1px);
+}
+
+.audio-icon-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 14px;
+  width: 15px;
+}
+
+.audio-icon-bars .bar {
+  width: 2px;
+  height: 4px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: height 0.2s ease;
+}
+
+.audio-toggle.is-playing .bar-1 { animation: soundBar 1.2s ease-in-out infinite alternate; }
+.audio-toggle.is-playing .bar-2 { animation: soundBar 0.9s ease-in-out 0.2s infinite alternate; }
+.audio-toggle.is-playing .bar-3 { animation: soundBar 1.4s ease-in-out 0.4s infinite alternate; }
+.audio-toggle.is-playing .bar-4 { animation: soundBar 1.0s ease-in-out 0.1s infinite alternate; }
+
+@keyframes soundBar {
+  0% { height: 3px; }
+  100% { height: 14px; }
+}
+
+/* ==========================================================================
+   PAGE LAYOUT & SECTIONS
+   ========================================================================== */
+.page-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 6rem 1.5rem;
+}
+
+/* ==========================================================================
+   SECTION 1: HERO
+   ========================================================================== */
+.hero-section {
+  min-height: 100vh;
+  text-align: center;
+  overflow: hidden;
+  justify-content: center;
+}
+
+/* Spider Lily SVG Motifs */
+.spider-lily-corner {
+  position: absolute;
+  width: clamp(220px, 32vw, 420px);
+  height: clamp(220px, 32vw, 420px);
+  pointer-events: none;
+  opacity: 0.22;
+  transition: opacity 1.5s ease;
+}
+
+.corner-bottom-left {
+  bottom: -40px;
+  left: -40px;
+}
+
+.corner-top-right {
+  top: -40px;
+  right: -40px;
+}
+
+.spider-lily-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 15px rgba(216, 92, 136, 0.4));
+}
+
+.spider-lily-svg.flipped {
+  transform: rotate(180deg);
+}
+
+.lily-stem path {
+  fill: none;
+  stroke: rgba(140, 40, 75, 0.5);
+  stroke-width: 1.5;
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  animation: drawLine 3.5s ease forwards 0.5s;
+}
+
+.lily-petals .petal {
+  fill: rgba(180, 45, 95, 0.15);
+  stroke: var(--accent-rose);
+  stroke-width: 1.2;
+  opacity: 0;
+  transform-origin: 150px 160px;
+  animation: petalFadeIn 2.5s ease forwards 1.2s;
+}
+
+.lily-stamens .stamen {
+  fill: none;
+  stroke: var(--accent-blush);
+  stroke-width: 1;
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: drawLine 3s ease forwards 1.8s;
+}
+
+.lily-stamens .anther {
+  fill: var(--accent-gold);
+  opacity: 0;
+  animation: fadeInQuick 1s ease forwards 3s;
+}
+
+@keyframes drawLine {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes petalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.6) rotate(-10deg);
+  }
+  to {
+    opacity: 0.85;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes fadeInQuick {
+  to { opacity: 1; }
+}
+
+/* Hero Center Content */
+.hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: 800px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.hero-pretitle {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent-blush);
+  opacity: 0;
+  animation: fadeUp 1.4s var(--transition-smooth) forwards 0.3s;
+}
+
+.hero-text-wrap {
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-line-1 {
+  font-family: var(--font-serif-cormorant);
+  font-size: clamp(2.2rem, 5.5vw, 4.4rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text-main);
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  text-shadow: 0 0 30px rgba(216, 92, 136, 0.25);
+  margin-bottom: 0.8rem;
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  color: var(--accent-rose);
+  font-weight: 300;
+  animation: blinkCursor 0.85s infinite;
+  margin-left: 2px;
+}
+
+@keyframes blinkCursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.hero-line-2 {
+  font-family: var(--font-serif-cormorant);
+  font-size: clamp(1.8rem, 4.2vw, 3.2rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--accent-blush);
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 1.8s var(--transition-smooth), transform 1.8s var(--transition-smooth);
+  text-shadow: 0 0 25px rgba(248, 168, 191, 0.3);
+}
+
+.hero-line-2.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Scroll Cue */
+.scroll-cue {
+  margin-top: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  opacity: 0;
+  animation: fadeUp 1.2s var(--transition-smooth) forwards 2.5s;
+  cursor: pointer;
+}
+
+.scroll-cue-text {
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.scroll-cue-arrow {
+  color: var(--accent-rose);
+  animation: bounceDown 2.2s infinite;
+}
+
+@keyframes bounceDown {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(8px); }
+  60% { transform: translateY(4px); }
+}
+
+/* ==========================================================================
+   SECTION 2: WHY HER (STACKED CARDS)
+   ========================================================================== */
+.cards-section {
+  max-width: 1040px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4.5rem;
+}
+
+.section-tag {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent-rose);
+  margin-bottom: 0.75rem;
+}
+
+.section-title {
+  font-family: var(--font-serif-cormorant);
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  font-weight: 400;
+  color: var(--text-main);
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+.title-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 1.2rem;
+}
+
+.divider-line {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(216, 92, 136, 0.4), transparent);
+}
+
+.divider-gem {
+  color: var(--accent-blush);
+  font-size: 0.85rem;
+}
+
+.cards-stream {
+  display: flex;
+  flex-direction: column;
+  gap: 2.8rem;
+  width: 100%;
+}
+
+.qual-card {
+  width: 100%;
+  max-width: 640px;
+  transition: transform 0.6s var(--transition-smooth), opacity 0.6s ease;
+}
+
+.card-left {
+  align-self: flex-start;
+}
+
+.card-right {
+  align-self: flex-end;
+}
+
+.card-inner {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.8rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-glass);
+  border-radius: 20px;
+  padding: 2.2rem 2.4rem;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  transition: all 0.4s var(--transition-smooth);
+}
+
+.qual-card:hover .card-inner {
+  background: var(--bg-card-hover);
+  border-color: var(--border-glass-active);
+  box-shadow: var(--glow-shadow);
+  transform: translateY(-4px);
+}
+
+.card-flower-slot {
+  flex-shrink: 0;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: rgba(110, 22, 59, 0.15);
+  border: 1px solid rgba(216, 92, 136, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.blooming-motif {
+  width: 100%;
+  height: 100%;
+}
+
+.motif-ring {
+  fill: none;
+  stroke: rgba(216, 92, 136, 0.18);
+  stroke-width: 1;
+}
+
+.motif-petal {
+  fill: rgba(216, 92, 136, 0.15);
+  stroke: var(--accent-rose);
+  stroke-width: 1.2;
+  transform-origin: 50px 50px;
+  transform: scale(0.3);
+  opacity: 0;
+  transition: transform 1.2s var(--transition-smooth), opacity 1.2s ease;
+}
+
+.motif-stem, .motif-stamen {
+  fill: none;
+  stroke: var(--accent-blush);
+  stroke-width: 1;
+  stroke-dasharray: 80;
+  stroke-dashoffset: 80;
+  transition: stroke-dashoffset 1.4s var(--transition-smooth);
+}
+
+.motif-core {
+  fill: var(--accent-gold);
+  opacity: 0;
+  transition: opacity 0.8s ease 0.8s;
+}
+
+/* Card in viewport -> animate motif bloom */
+.qual-card.is-visible .motif-petal {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.qual-card.is-visible .motif-stem,
+.qual-card.is-visible .motif-stamen {
+  stroke-dashoffset: 0;
+}
+
+.qual-card.is-visible .motif-core {
+  opacity: 1;
+}
+
+.card-content {
+  flex: 1;
+}
+
+.card-number {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  color: var(--accent-rose);
+  opacity: 0.85;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.card-heading {
+  font-family: var(--font-serif-playfair);
+  font-size: 1.45rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 0.65rem;
+  letter-spacing: 0.01em;
+}
+
+.card-text {
+  font-family: var(--font-sans);
+  font-size: 0.98rem;
+  color: var(--text-body);
+  line-height: 1.75;
+  font-weight: 300;
+}
+
+/* Scroll reveal initial states for cards */
+.reveal-card {
+  opacity: 0;
+  transition: opacity 1s var(--transition-smooth), transform 1s var(--transition-smooth);
+}
+
+.card-left.reveal-card {
+  transform: translateX(-40px);
+}
+
+.card-right.reveal-card {
+  transform: translateX(40px);
+}
+
+.reveal-card.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ==========================================================================
+   SECTION 3: CONSTELLATION ("MANAHIL")
+   ========================================================================== */
+.constellation-section {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 5rem 1.5rem;
+}
+
+.constellation-header {
+  margin-bottom: 2rem;
+}
+
+.constellation-hint {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  letter-spacing: 0.08em;
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+.constellation-viewport {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  height: clamp(340px, 48vh, 500px);
+  margin: 1.5rem 0;
+  border-radius: 24px;
+  background: radial-gradient(ellipse at center, rgba(35, 12, 30, 0.45) 0%, rgba(9, 6, 12, 0.75) 100%);
+  border: 1px solid rgba(216, 92, 136, 0.12);
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.8), 0 10px 40px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+
+.constellation-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.constellation-caption {
+  margin-top: 2rem;
+  max-width: 600px;
+}
+
+.constellation-quote {
+  font-family: var(--font-serif-cormorant);
+  font-size: clamp(1.8rem, 3.8vw, 2.7rem);
+  font-style: italic;
+  color: var(--accent-soft-pink);
+  text-shadow: 0 0 25px rgba(248, 168, 191, 0.45);
+  margin-bottom: 0.5rem;
+}
+
+.constellation-subquote {
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  color: var(--text-dim);
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   SECTION 4: THE CONFESSION
+   ========================================================================== */
+.confession-section {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 8rem 1.5rem;
+}
+
+.confession-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, rgba(74, 16, 42, 0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.confession-container {
+  max-width: 680px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.confession-mark {
+  color: var(--accent-rose);
+  font-size: 1.2rem;
+  margin-bottom: 2.5rem;
+  opacity: 0.8;
+  filter: drop-shadow(0 0 10px rgba(216, 92, 136, 0.6));
+}
+
+.confession-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.confession-para {
+  font-family: var(--font-serif-cormorant);
+  font-size: clamp(1.35rem, 2.6vw, 1.85rem);
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--text-body);
+  letter-spacing: 0.01em;
+  transition: opacity 1.4s var(--transition-smooth), transform 1.4s var(--transition-smooth);
+}
+
+.confession-para.reveal-para {
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+.confession-para.reveal-para.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.confession-para.highlight-para {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--text-main);
+  text-shadow: 0 0 35px rgba(248, 168, 191, 0.28);
+  border-top: 1px solid rgba(216, 92, 136, 0.15);
+  border-bottom: 1px solid rgba(216, 92, 136, 0.15);
+  padding: 1.8rem 0;
+  margin-top: 1rem;
+}
+
+/* ==========================================================================
+   SECTION 5: CLOSING & GRAND LOTUS BLOOM
+   ========================================================================== */
+.closing-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  padding: 6rem 1.5rem 8rem;
+  overflow: hidden;
+}
+
+.grand-lotus-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 680px;
+  width: 100%;
+}
+
+.lotus-stage {
+  position: relative;
+  width: clamp(260px, 42vw, 380px);
+  height: clamp(260px, 42vw, 380px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.lotus-glow-halo {
+  position: absolute;
+  width: 75%;
+  height: 75%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(216, 92, 136, 0.45) 0%, rgba(110, 22, 59, 0.2) 50%, transparent 75%);
+  filter: blur(35px);
+  animation: haloPulse 5s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes haloPulse {
+  0% { transform: scale(0.9); opacity: 0.35; }
+  100% { transform: scale(1.2); opacity: 0.75; }
+}
+
+.grand-lotus-svg {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 0 25px rgba(216, 92, 136, 0.3));
+}
+
+/* Grand Lotus Blooming Petal Animations */
+.pad {
+  fill: #190914;
+  stroke: rgba(140, 30, 70, 0.4);
+  stroke-width: 1;
+}
+
+.petal-grand {
+  stroke: rgba(255, 204, 213, 0.4);
+  stroke-width: 0.75;
+  transform-origin: 200px 280px;
+  opacity: 0.1;
+  transform: scale(0.4) rotate(0deg);
+  transition: transform 2.4s var(--transition-smooth), opacity 2.2s ease;
+}
+
+/* Animated bloom states when closing section is active */
+.closing-section.is-bloomed .g-out-1 {
+  transform: scale(1) rotate(-28deg);
+  opacity: 0.9;
+}
+.closing-section.is-bloomed .g-out-2 {
+  transform: scale(1) rotate(28deg);
+  opacity: 0.9;
+}
+.closing-section.is-bloomed .g-out-3 {
+  transform: scale(1) rotate(-16deg);
+  opacity: 0.95;
+}
+.closing-section.is-bloomed .g-out-4 {
+  transform: scale(1) rotate(16deg);
+  opacity: 0.95;
+}
+
+.closing-section.is-bloomed .g-mid-1 {
+  transform: scale(1) rotate(-8deg);
+  opacity: 0.98;
+  transition-delay: 0.3s;
+}
+.closing-section.is-bloomed .g-mid-2 {
+  transform: scale(1) rotate(8deg);
+  opacity: 0.98;
+  transition-delay: 0.3s;
+}
+.closing-section.is-bloomed .g-mid-center {
+  transform: scale(1) rotate(0deg);
+  opacity: 1;
+  transition-delay: 0.5s;
+}
+
+.closing-section.is-bloomed .g-inn-1 {
+  transform: scale(1) rotate(-4deg);
+  opacity: 1;
+  transition-delay: 0.7s;
+}
+.closing-section.is-bloomed .g-inn-2 {
+  transform: scale(1) rotate(4deg);
+  opacity: 1;
+  transition-delay: 0.7s;
+}
+
+.closing-section.is-bloomed .lotus-core-glow {
+  animation: coreBreathe 3s ease-in-out infinite alternate 1.8s;
+}
+
+@keyframes coreBreathe {
+  0% { transform: scale(0.95); opacity: 0.7; }
+  100% { transform: scale(1.15); opacity: 1; }
+}
+
+.closing-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.closing-lead {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent-rose);
+}
+
+.closing-main {
+  font-family: var(--font-serif-cormorant);
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text-main);
+  text-shadow: 0 0 35px rgba(248, 168, 191, 0.4);
+}
+
+.closing-sub {
+  font-family: var(--font-serif-cormorant);
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--text-dim);
+  max-width: 500px;
+}
+
+.closing-replay {
+  margin-top: 2.8rem;
+}
+
+.replay-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  background: rgba(216, 92, 136, 0.08);
+  border: 1px solid var(--border-glass);
+  border-radius: 999px;
+  color: var(--accent-blush);
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: all 0.35s var(--transition-smooth);
+}
+
+.replay-btn:hover {
+  background: rgba(216, 92, 136, 0.2);
+  border-color: var(--border-glass-active);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(216, 92, 136, 0.25);
+}
+
+/* ==========================================================================
+   GENERAL REVEAL UTILITIES & ANIMATIONS
+   ========================================================================== */
+.reveal-item {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 1.2s var(--transition-smooth), transform 1.2s var(--transition-smooth);
+}
+
+.reveal-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (MOBILE-FIRST POLISH)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .section {
+    padding: 4.5rem 1.25rem;
+  }
+
+  .audio-toggle {
+    top: 16px;
+    right: 16px;
+    padding: 6px 12px;
+    font-size: 0.72rem;
+  }
+
+  .spider-lily-corner {
+    width: 220px;
+    height: 220px;
+    opacity: 0.16;
+  }
+
+  .corner-bottom-left {
+    bottom: -20px;
+    left: -20px;
+  }
+
+  .corner-top-right {
+    top: -20px;
+    right: -20px;
+  }
+
+  .card-inner {
+    padding: 1.6rem 1.4rem;
+    gap: 1.2rem;
+  }
+
+  .card-flower-slot {
+    width: 46px;
+    height: 46px;
+  }
+
+  .card-heading {
+    font-size: 1.25rem;
+  }
+
+  .card-text {
+    font-size: 0.92rem;
+  }
+
+  .card-left, .card-right {
+    align-self: center;
+  }
+
+  .constellation-viewport {
+    height: 320px;
+    border-radius: 16px;
+  }
+
+  .confession-section {
+    padding: 5rem 1.2rem;
+  }
+
+  .confession-body {
+    gap: 1.8rem;
+  }
+}
+
+/* ==========================================================================
+   ACCESSIBILITY: PREFERS REDUCED MOTION
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .ambient-glow {
+    animation: none !important;
+  }
+
+  .reveal-card,
+  .reveal-item,
+  .reveal-para,
+  .hero-line-2 {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .petal-grand {
+    opacity: 0.95 !important;
+    transform: none !important;
+  }
+}

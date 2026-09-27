@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>For Manahil ✨</title>
+  <meta name="description" content="A quiet, heartfelt confession for Manahil.">
+  <meta name="theme-color" content="#070709">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Ambient Audio Toggle -->
+  <button id="audio-toggle" class="audio-toggle" aria-label="Toggle ambient music" title="Toggle ambient music">
+    <div class="audio-icon-bars" aria-hidden="true">
+      <span class="bar bar-1"></span>
+      <span class="bar bar-2"></span>
+      <span class="bar bar-3"></span>
+      <span class="bar bar-4"></span>
+    </div>
+    <span class="audio-label" id="audio-label">Sound on</span>
+  </button>
+
+  <!-- Fullscreen Particle Fireflies Canvas -->
+  <canvas id="fireflies-canvas" class="fireflies-canvas"></canvas>
+
+  <!-- Ambient Vignette & Color Glow Layers -->
+  <div class="ambient-glow glow-top"></div>
+  <div class="ambient-glow glow-bottom"></div>
+  <div class="screen-vignette"></div>
+
+  <!-- MAIN SCROLL CONTAINER -->
+  <main class="page-container">
+
+    <!-- ========================================================
+         SECTION 1: HERO
+         ======================================================== -->
+    <section id="hero" class="section hero-section" aria-label="Introduction">
+      <!-- Spider Lily Silhouettes (SVG Corner Motifs) -->
+      <div class="spider-lily-corner corner-bottom-left" aria-hidden="true">
+        <svg viewBox="0 0 300 300" class="spider-lily-svg" preserveAspectRatio="xMidYMid meet">
+          <g class="lily-stem">
+            <path d="M 10 320 Q 80 200 150 160" />
+            <path d="M 0 310 Q 50 240 100 210" />
+          </g>
+          <g class="lily-petals">
+            <!-- Dramatic recurving petals of spider lily -->
+            <path class="petal petal-1" d="M 150 160 Q 180 110 240 80 Q 200 130 150 160" />
+            <path class="petal petal-2" d="M 150 160 Q 210 140 270 145 Q 210 170 150 160" />
+            <path class="petal petal-3" d="M 150 160 Q 180 180 250 220 Q 190 200 150 160" />
+            <path class="petal petal-4" d="M 150 160 Q 120 120 160 50 Q 140 110 150 160" />
+            <path class="petal petal-5" d="M 150 160 Q 100 140 70 80 Q 110 130 150 160" />
+            <path class="petal petal-6" d="M 150 160 Q 140 190 110 240 Q 130 190 150 160" />
+          </g>
+          <g class="lily-stamens">
+            <!-- Long arching stamens -->
+            <path class="stamen" d="M 150 160 Q 200 90 270 60" />
+            <circle cx="270" cy="60" r="2.5" class="anther" />
+            <path class="stamen" d="M 150 160 Q 230 130 290 120" />
+            <circle cx="290" cy="120" r="2.5" class="anther" />
+            <path class="stamen" d="M 150 160 Q 220 170 280 195" />
+            <circle cx="280" cy="195" r="2.5" class="anther" />
+            <path class="stamen" d="M 150 160 Q 190 220 230 260" />
+            <circle cx="230" cy="260" r="2.5" class="anther" />
+            <path class="stamen" d="M 150 160 Q 160 80 180 25" />
+            <circle cx="180" cy="25" r="2.5" class="anther" />
+          </g>
+        </svg>
+      </div>
+
+      <div class="spider-lily-corner corner-top-right" aria-hidden="true">
+        <svg viewBox="0 0 300 300" class="spider-lily-svg flipped" preserveAspectRatio="xMidYMid meet">
+          <g class="lily-stem">
+            <path d="M 10 320 Q 80 200 150 160" />
+          </g>
+          <g class="lily-petals">
+            <path class="petal petal-1" d="M 150 160 Q 180 110 240 80 Q 200 130 150 160" />
+            <path class="petal petal-2" d="M 150 160 Q 210 140 270 145 Q 210 170 150 160" />
+            <path class="petal petal-3" d="M 150 160 Q 180 180 250 220 Q 190 200 150 160" />
+            <path class="petal petal-4" d="M 150 160 Q 120 120 160 50 Q 140 110 150 160" />
+            <path class="petal petal-5" d="M 150 160 Q 100 140 70 80 Q 110 130 150 160" />
+          </g>
+          <g class="lily-stamens">
+            <path class="stamen" d="M 150 160 Q 200 90 270 60" />
+            <circle cx="270" cy="60" r="2" class="anther" />
+            <path class="stamen" d="M 150 160 Q 230 130 290 120" />
+            <circle cx="290" cy="120" r="2" class="anther" />
+            <path class="stamen" d="M 150 160 Q 160 80 180 25" />
+            <circle cx="180" cy="25" r="2" class="anther" />
+          </g>
+        </svg>
+      </div>
+
+      <!-- Hero Center Content -->
+      <div class="hero-content">
+        <p class="hero-pretitle">A quiet thought, for you</p>
+        
+        <div class="hero-text-wrap">
+          <h1 class="hero-line hero-line-1">
+            <span id="hero-typewriter"></span><span class="typewriter-cursor">|</span>
+          </h1>
+          <p id="hero-subline" class="hero-line hero-line-2">...to maine likh di.</p>
+        </div>
+
+        <div class="scroll-cue" id="scroll-cue">
+          <span class="scroll-cue-text">scroll gently</span>
+          <div class="scroll-cue-arrow" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M7 10l5 5 5-5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         SECTION 2: WHY HER
+         ======================================================== -->
+    <section id="why-her" class="section cards-section" aria-label="Qualities I Cherish">
+      <div class="section-header reveal-item">
+        <span class="section-tag">har ek baat tumhari</span>
+        <h2 class="section-title">Woh Chhoti Chhoti Cheezein</h2>
+        <div class="title-divider">
+          <span class="divider-line"></span>
+          <span class="divider-gem">✦</span>
+          <span class="divider-line"></span>
+        </div>
+      </div>
+
+      <div class="cards-stream">
+
+        <!-- CARD 1 -->
+        <article class="qual-card card-left reveal-card" data-card="1">
+          <div class="card-inner">
+            <div class="card-flower-slot" aria-hidden="true">
+              <svg viewBox="0 0 100 100" class="blooming-motif lotus-motif">
+                <circle cx="50" cy="50" r="38" class="motif-ring" />
+                <path class="motif-petal p-1" d="M50 50 C40 32 40 18 50 12 C60 18 60 32 50 50 Z" />
+                <path class="motif-petal p-2" d="M50 50 C33 42 22 34 20 23 C30 20 42 33 50 50 Z" />
+                <path class="motif-petal p-3" d="M50 50 C67 42 78 34 80 23 C70 20 58 33 50 50 Z" />
+                <path class="motif-petal p-4" d="M50 50 C32 58 20 62 16 52 C22 43 38 48 50 50 Z" />
+                <path class="motif-petal p-5" d="M50 50 C68 58 80 62 84 52 C78 43 62 48 50 50 Z" />
+                <circle cx="50" cy="50" r="4.5" class="motif-core" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="card-number">01</span>
+              <!-- PLACEHOLDER: Feel free to customize this heading & text -->
+              <h3 class="card-heading">Tumhari Hansi</h3>
+              <p class="card-text">
+                Pata nahi kaise, par jab bhi tum hasti ho, aaspas ki saari be-rang cheezein 
+                thodi roshan lagne lagti hain. It's effortless, disarming, and so genuinely you.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 2 -->
+        <article class="qual-card card-right reveal-card" data-card="2">
+          <div class="card-inner">
+            <div class="card-flower-slot" aria-hidden="true">
+              <svg viewBox="0 0 100 100" class="blooming-motif lily-motif">
+                <circle cx="50" cy="50" r="38" class="motif-ring" />
+                <path class="motif-stem" d="M50 82 Q48 65 50 50" />
+                <path class="motif-petal p-1" d="M50 50 Q65 30 80 20 Q65 42 50 50" />
+                <path class="motif-petal p-2" d="M50 50 Q35 30 20 20 Q35 42 50 50" />
+                <path class="motif-petal p-3" d="M50 50 Q50 25 50 12 Q50 30 50 50" />
+                <path class="motif-stamen" d="M50 50 Q70 25 82 14" />
+                <circle cx="82" cy="14" r="2" class="motif-core" />
+                <path class="motif-stamen" d="M50 50 Q30 25 18 14" />
+                <circle cx="18" cy="14" r="2" class="motif-core" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="card-number">02</span>
+              <!-- PLACEHOLDER: Feel free to customize this heading & text -->
+              <h3 class="card-heading">Baatein Karne Ka Andaaz</h3>
+              <p class="card-text">
+                Jis thehraav aur narmi se tum baat karti ho, waqt ka pata hi nahi chalta. 
+                Tum sirf bolti nahi ho, samjhti bhi ho — aur aisi sunne waali rooh bohot 
+                kam milti hai.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 3 -->
+        <article class="qual-card card-left reveal-card" data-card="3">
+          <div class="card-inner">
+            <div class="card-flower-slot" aria-hidden="true">
+              <svg viewBox="0 0 100 100" class="blooming-motif lotus-motif">
+                <circle cx="50" cy="50" r="38" class="motif-ring" />
+                <path class="motif-petal p-1" d="M50 50 C40 32 40 18 50 12 C60 18 60 32 50 50 Z" />
+                <path class="motif-petal p-2" d="M50 50 C33 42 22 34 20 23 C30 20 42 33 50 50 Z" />
+                <path class="motif-petal p-3" d="M50 50 C67 42 78 34 80 23 C70 20 58 33 50 50 Z" />
+                <path class="motif-petal p-4" d="M50 50 C30 55 18 58 15 48 C20 40 36 45 50 50 Z" />
+                <path class="motif-petal p-5" d="M50 50 C70 55 82 58 85 48 C80 40 64 45 50 50 Z" />
+                <circle cx="50" cy="50" r="4.5" class="motif-core" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="card-number">03</span>
+              <!-- PLACEHOLDER: Feel free to customize this heading & text -->
+              <h3 class="card-heading">Woh Sukoon Bhara Noor</h3>
+              <p class="card-text">
+                Kuch log hote hain jinke sirf aas-paas hone se dil be-fikr ho jata hai. 
+                Tumhari maujoodgi mein ajeeb sa sukoon hai, jaise koi shor-o-gul ke baad 
+                thandi hawa ka jhonka.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 4 -->
+        <article class="qual-card card-right reveal-card" data-card="4">
+          <div class="card-inner">
+            <div class="card-flower-slot" aria-hidden="true">
+              <svg viewBox="0 0 100 100" class="blooming-motif lily-motif">
+                <circle cx="50" cy="50" r="38" class="motif-ring" />
+                <path class="motif-petal p-1" d="M50 50 Q65 30 80 20 Q65 42 50 50" />
+                <path class="motif-petal p-2" d="M50 50 Q35 30 20 20 Q35 42 50 50" />
+                <path class="motif-petal p-3" d="M50 50 Q50 25 50 12 Q50 30 50 50" />
+                <path class="motif-petal p-4" d="M50 50 Q68 62 82 68 Q62 58 50 50" />
+                <path class="motif-petal p-5" d="M50 50 Q32 62 18 68 Q38 58 50 50" />
+                <path class="motif-stamen" d="M50 50 Q75 35 90 28" />
+                <circle cx="90" cy="28" r="2" class="motif-core" />
+                <path class="motif-stamen" d="M50 50 Q25 35 10 28" />
+                <circle cx="10" cy="28" r="2" class="motif-core" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="card-number">04</span>
+              <!-- PLACEHOLDER: Feel free to customize this heading & text -->
+              <h3 class="card-heading">Tumhara Saaf Dil</h3>
+              <p class="card-text">
+                Duniya chahe jitni bhi complicated ho, tumhari saadgi aur sachayi 
+                hamesha chamakti rehti hai. Tum jaisi ho, waisi rehna hi tumhari sabse 
+                badi taaqat hai.
+              </p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+         SECTION 3: CONSTELLATION ("MANAHIL")
+         ======================================================== -->
+    <section id="constellation" class="section constellation-section" aria-label="Constellation of Manahil">
+      <div class="constellation-header reveal-item">
+        <span class="section-tag">aasmaan ke sitaron mein</span>
+        <h2 class="section-title">Tumhara Naam</h2>
+        <p class="constellation-hint">Hover or touch the stars to gently illuminate them</p>
+      </div>
+
+      <div class="constellation-viewport">
+        <!-- Interactive Constellation Canvas -->
+        <canvas id="constellation-canvas" class="constellation-canvas"></canvas>
+      </div>
+
+      <div class="constellation-caption reveal-item">
+        <p class="constellation-quote">"meri sabse pyaari star"</p>
+        <p class="constellation-subquote">hazaron sitaron ke darmiyan, meri nazar hamesha tum par hi theherti hai</p>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         SECTION 4: THE CONFESSION
+         ======================================================== -->
+    <section id="confession" class="section confession-section" aria-label="The Confession">
+      <div class="confession-backdrop" aria-hidden="true"></div>
+      
+      <div class="confession-container">
+        <div class="confession-mark" aria-hidden="true">✦</div>
+        
+        <div class="confession-body">
+          <p class="confession-para reveal-para">
+            Sach kahoon toh, mujhe nahi pata ke yeh kab shuru hua. 
+            Shayad kisi aam si guftagu ke dauran, ya shayad tab jab tumhari hansi 
+            ne pehli baar mere din ka thakaan mita diya tha.
+          </p>
+
+          <p class="confession-para reveal-para">
+            Yeh koi aisi baat nahi hai jo kisi jaldbaazi mein likhi gayi ho. 
+            Na hi mujhe is baat ka koi darr ya jawab ki koi fikar hai. 
+            Yeh bas ek dil ka thehra hua sach hai jo main apne paas sambhaal kar nahi rakh saka.
+          </p>
+
+          <p class="confession-para reveal-para">
+            Mujhe tumhari har baat pasand hai — tumhara bolna, tumhara chup rehna, 
+            aur tumhara bina kisi koshish ke bas tum bane rehna. 
+            Tum mere liye sirf ek khayal nahi ho, ek bohot hi khoobsurat ehsaas ho.
+          </p>
+
+          <p class="confession-para reveal-para highlight-para">
+            Koi shart nahi, koi tawaqqo nahi.<br>
+            Bas itna jaan lo ke tum jaisi ho, mere liye bohot khaas ho.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         SECTION 5: CLOSING & GRAND LOTUS BLOOM
+         ======================================================== -->
+    <section id="closing" class="section closing-section" aria-label="Closing">
+      <div class="grand-lotus-wrap reveal-item">
+        <!-- Centerpiece Grand Blooming Lotus Flower (SVG) -->
+        <div class="lotus-stage" id="lotus-stage">
+          <div class="lotus-glow-halo"></div>
+          
+          <svg viewBox="0 0 400 400" class="grand-lotus-svg" id="grand-lotus-svg" preserveAspectRatio="xMidYMid meet">
+            <defs>
+              <radialGradient id="lotusHeartGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#fff5f8" stop-opacity="1" />
+                <stop offset="40%" stop-color="#f2789f" stop-opacity="0.9" />
+                <stop offset="85%" stop-color="#7a1443" stop-opacity="0.3" />
+                <stop offset="100%" stop-color="#0a0a0c" stop-opacity="0" />
+              </radialGradient>
+              <linearGradient id="petalGradOuter" x1="0%" y1="100%" x2="0%" y2="0%">
+                <stop offset="0%" stop-color="#3d0a20" stop-opacity="0.8" />
+                <stop offset="60%" stop-color="#9d2053" stop-opacity="0.85" />
+                <stop offset="100%" stop-color="#f8a5c2" stop-opacity="0.95" />
+              </linearGradient>
+              <linearGradient id="petalGradInner" x1="0%" y1="100%" x2="0%" y2="0%">
+                <stop offset="0%" stop-color="#671136" stop-opacity="0.9" />
+                <stop offset="70%" stop-color="#dd4c7e" stop-opacity="0.95" />
+                <stop offset="100%" stop-color="#ffccd5" stop-opacity="1" />
+              </linearGradient>
+            </defs>
+
+            <!-- Bottom Lily Pad Leaves (Foundation) -->
+            <g class="lotus-pads">
+              <path class="pad pad-left" d="M200 280 C130 285 70 295 40 330 C100 360 210 340 200 280 Z" />
+              <path class="pad pad-right" d="M200 280 C270 285 330 295 360 330 C300 360 190 340 200 280 Z" />
+            </g>
+
+            <!-- Layer 1: Outermost Broad Petals -->
+            <g class="lotus-layer layer-outer">
+              <path class="petal-grand g-out-1" d="M200 280 C110 270 50 200 80 140 C120 180 170 230 200 280 Z" fill="url(#petalGradOuter)" />
+              <path class="petal-grand g-out-2" d="M200 280 C290 270 350 200 320 140 C280 180 230 230 200 280 Z" fill="url(#petalGradOuter)" />
+              <path class="petal-grand g-out-3" d="M200 280 C90 240 70 140 120 100 C150 160 180 220 200 280 Z" fill="url(#petalGradOuter)" />
+              <path class="petal-grand g-out-4" d="M200 280 C310 240 330 140 280 100 C250 160 220 220 200 280 Z" fill="url(#petalGradOuter)" />
+            </g>
+
+            <!-- Layer 2: Mid Petals -->
+            <g class="lotus-layer layer-mid">
+              <path class="petal-grand g-mid-1" d="M200 280 C120 230 110 130 160 80 C180 150 190 210 200 280 Z" fill="url(#petalGradInner)" />
+              <path class="petal-grand g-mid-2" d="M200 280 C280 230 290 130 240 80 C220 150 210 210 200 280 Z" fill="url(#petalGradInner)" />
+              <path class="petal-grand g-mid-center" d="M200 280 C160 190 150 110 200 60 C250 110 240 190 200 280 Z" fill="url(#petalGradInner)" />
+            </g>
+
+            <!-- Layer 3: Central Cup & Golden Bud -->
+            <g class="lotus-layer layer-center">
+              <path class="petal-grand g-inn-1" d="M200 280 C170 230 165 160 190 120 C205 170 205 220 200 280 Z" fill="#ffb3c6" />
+              <path class="petal-grand g-inn-2" d="M200 280 C230 230 235 160 210 120 C195 170 195 220 200 280 Z" fill="#ffb3c6" />
+              <circle cx="200" cy="210" r="30" fill="url(#lotusHeartGlow)" class="lotus-core-glow" />
+              <circle cx="200" cy="205" r="8" fill="#ffe066" class="lotus-core-seed" />
+            </g>
+          </svg>
+        </div>
+
+        <!-- Closing Sentiment -->
+        <div class="closing-message">
+          <p class="closing-lead">Bas yehi kehna tha...</p>
+          <h3 class="closing-main">Hamesha khush raho, Manahil.</h3>
+          <p class="closing-sub">Chahe jahan bhi raho, tumhari roshni yunhi bani rahe.</p>
+
+          <div class="closing-replay">
+            <button id="scroll-to-top" class="replay-btn" aria-label="Re-experience from top">
+              <span>Wapas upar chalein</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 15l-6-6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
